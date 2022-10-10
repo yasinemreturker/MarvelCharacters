@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item>
+        <bitmap
+            android:alpha="0.2"
+            android:gravity="center"
+            android:src="@drawable/mcu_background" />
+    </item>
+
+    <item>
+        <bitmap
+            android:gravity="center"
+            android:src="@drawable/marvel_splash_logo" />
+    </item>
+
+</layer-list>
