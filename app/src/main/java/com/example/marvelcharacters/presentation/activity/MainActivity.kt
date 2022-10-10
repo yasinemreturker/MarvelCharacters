@@ -1,4 +1,4 @@
-package com.example.marvelcharacters.presentation.activities
+package com.example.marvelcharacters.presentation.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
