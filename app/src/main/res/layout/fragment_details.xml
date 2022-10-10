@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    tools:context=".ui.details.DetailsFragment">
+
+    <data>
+
+        <variable
+            name="character"
+            type="com.example.marvelcharacters.data.model.MarvelCharacter" />
+
+        <variable
+            name="viewModel"
+            type="com.example.marvelcharacters.presentation.viewmodel.DetailsViewModel" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/app_bar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="310dp">
+
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:contentScrim="?attr/colorPrimary"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
+                app:statusBarScrim="?attr/colorPrimaryVariant"
+                app:titleEnabled="false">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@{character.name}"
+                    app:setImage="@{character.thumbnail.imageUrl}"
+                    tools:scaleType="centerCrop"
+                    tools:src="@mipmap/ic_launcher" />
+
+                <com.google.android.material.appbar.MaterialToolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:elevation="0dp"
+                    app:layout_collapseMode="pin" />
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:text="@{character.name}"
+                    android:textAppearance="?attr/textAppearanceHeadline4"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold"
+                    tools:text="Ultron" />
+
+                <TextView
+                    style="@style/DetailsSubtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/description_title"
+                    tools:text="Description" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:text="@{character.description}"
+                    tools:text="Arguably the greatest and certainly the most horrific creation of scientific genius Dr. Henry Pym, Ultron is a criminally insane rogue sentient robot dedicated to conquest and the extermination of humanity." />
+
+                <TextView
+                    style="@style/DetailsSubtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/comics_title" />
+
+                <include
+                    android:id="@+id/comics_result_state"
+                    layout="@layout/ui_result_state" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/comics_recycler_view"
+                    style="@style/DetailsSpotlight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:submitData="@{viewModel.comics.dataIfAvailable}"
+                    tools:itemCount="1"
+                    tools:listitem="@layout/item_spotlight" />
+
+                <TextView
+                    style="@style/DetailsSubtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/events_title" />
+
+                <include
+                    android:id="@+id/events_result_state"
+                    layout="@layout/ui_result_state" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/events_recycler_view"
+                    style="@style/DetailsSpotlight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:submitData="@{viewModel.events.dataIfAvailable}"
+                    tools:itemCount="1"
+                    tools:listitem="@layout/item_spotlight" />
+
+                <TextView
+                    style="@style/DetailsSubtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/series_title" />
+
+                <include
+                    android:id="@+id/series_result_state"
+                    layout="@layout/ui_result_state" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/series_recycler_view"
+                    style="@style/DetailsSpotlight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:submitData="@{viewModel.series.dataIfAvailable}"
+                    tools:itemCount="1"
+                    tools:listitem="@layout/item_spotlight" />
+
+                <TextView
+                    style="@style/DetailsSubtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/stories_title" />
+
+                <include
+                    android:id="@+id/stories_result_state"
+                    layout="@layout/ui_result_state" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/stories_recycler_view"
+                    style="@style/DetailsSpotlight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:submitData="@{viewModel.stories.dataIfAvailable}"
+                    tools:itemCount="1"
+                    tools:listitem="@layout/item_spotlight" />
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</layout>
